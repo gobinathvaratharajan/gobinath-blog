@@ -1,0 +1,33 @@
+name: Gobinath Blog
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: clear Install dependencies
+        run: npm install
+
+      - name: Build and export Next.js
+        run: |
+          npm run build
+          npm run export
+
+      - name: Deploy to GitHub Pages
+        uses: gobinathvaratharajan/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
