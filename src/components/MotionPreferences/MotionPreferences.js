@@ -1,8 +1,8 @@
 "use client";
 import { MotionConfig } from "framer-motion";
 
-function RespectMotionPreferences({ children }) {
+function MotionPreferences({ children }) {
   return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
 }
 
-export default RespectMotionPreferences;
+export default MotionPreferences;
